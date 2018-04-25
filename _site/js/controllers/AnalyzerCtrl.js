@@ -26,7 +26,7 @@ function AnalyzerCtrl($scope, $http, Analyzer, Data){
 
 
     $scope.detect = function() {
-        var path = "http://localhost:9200" + "/_cluster/state";
+        var path = "http://localhost:9200/_cluster/state";
 
         $http.get(path)
             .success(function(response){
@@ -224,9 +224,9 @@ function AnalyzerCtrl($scope, $http, Analyzer, Data){
 
     $scope.analyzeStandard = function(analyzer) {
 
-        var path = "http://localhost:9200" + "/_analyze?analyzer=" + analyzer;
+        var path = `http://localhost:9200/_analyze?analyzer=${analyzer}&text=${$scope.analyzer.query}`;
 
-        $http.post(path, $scope.analyzer.query)
+        $http.get(path)
             .success(function(response){
                 var tokens = [];
                 for(i in response.tokens){
@@ -243,9 +243,9 @@ function AnalyzerCtrl($scope, $http, Analyzer, Data){
 
     $scope.analyzeCustom = function(analyzer, index) {
 
-        var path = "http://localhost:9200" + "/" + index + "/_analyze?analyzer=" + analyzer;
+        var path = `http://localhost:9200/${index}/_analyze?analyzer=${analyzer}&text=${$scope.analyzer.query}`;
 
-        $http.post(path, $scope.analyzer.query)
+        $http.get(path)
             .success(function(response){
                 var tokens = [];
                 for(i in response.tokens){
@@ -261,9 +261,9 @@ function AnalyzerCtrl($scope, $http, Analyzer, Data){
 
     $scope.analyzeField = function(field, index) {
 
-        var path = "http://localhost:9200" + "/" + index + "/_analyze?field=" + field;
+        var path = `http://localhost:9200/${index}/_analyze?field=${field}&text=${$scope.analyzer.query}`;
 
-        $http.post(path, $scope.analyzer.query)
+        $http.get(path)
             .success(function(response){
                 var tokens = [];
                 for(i in response.tokens){
