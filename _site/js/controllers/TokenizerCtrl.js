@@ -12,8 +12,8 @@ function TokenizerCtrl($scope, $http, Tokenizer, Data){
 
     $scope.analyze = function(tokenizer) {
         var path = "http://localhost:9200" + "/_analyze?tokenizer=" + tokenizer;
-
-        $http.get(path, $scope.tokenizer.query)
+        console.log("##", $scope.tokenizer.query)
+        $http.post(path, $scope.tokenizer.query)
             .success(function(response){
                 var tokens = [];
                 for(i in response.tokens){
