@@ -4,7 +4,7 @@ function QueryOutput($scope, $http, Data){
     $scope.data = Data;
 
     $scope.explain = function (id) {
-        var path = $scope.data.host + "/" + $scope.data.currentIndex + "/" + $scope.data.currentType + "/" + id + "/_explain";
+        var path = "http://localhost:9200" + "/" + $scope.data.currentIndex + "/" + $scope.data.currentType + "/" + id + "/_explain";
         var query = $scope.data.query;
 
         //console.log(id);

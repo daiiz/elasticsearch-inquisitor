@@ -2,9 +2,9 @@
 function QueryInput($scope, $http, $filter, Data, pubsub){
     $scope.data = Data;
     $scope.pubsub = pubsub;
-  
+
     $scope.hostChanged = function(){
-      $scope.pubsub.publish('HOST_CHANGED', $scope.data.host);
+      $scope.pubsub.publish('HOST_CHANGED', "http://localhost:9200");
     };
 
     $scope.$watch('data.query', function(value){
@@ -76,7 +76,7 @@ function QueryInput($scope, $http, $filter, Data, pubsub){
 
         query = query + ',' + $scope.data.highlight + highlightFields.join(',') + '}}}';
 
-        var path = $scope.data.host + "/" + $scope.data.currentIndex + "/" + $scope.data.currentType + "/_search";
+        var path = "http://localhost:9200" + "/" + $scope.data.currentIndex + "/" + $scope.data.currentType + "/_search";
 
         $http.post(path, query)
             .success(function(response){
@@ -134,7 +134,7 @@ function QueryInput($scope, $http, $filter, Data, pubsub){
 
         console.log(query);
 
-        var path = $scope.data.host + "/" + $scope.data.currentIndex  + "/_validate/query?explain=true";
+        var path = "http://localhost:9200" + "/" + $scope.data.currentIndex  + "/_validate/query?explain=true";
 
         $http.post(path, query)
             .success(function(response){

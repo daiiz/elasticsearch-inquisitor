@@ -11,7 +11,7 @@ function DropdownCtrl($scope, $http, Data, pubsub) {
     });
 
     $scope.loadMappings = function(){
-      var path = $scope.data.host + "/_mapping";
+      var path = "http://localhost:9200" + "/_mapping";
       $http.get(path).then(function(response){
           if($scope.indices && $scope.indices.length > 0){
               $scope.indices.length = 0;
@@ -29,7 +29,7 @@ function DropdownCtrl($scope, $http, Data, pubsub) {
           }
 
 
-          path = $scope.data.host + "/_aliases";
+          path = "http://localhost:9200" + "/_aliases";
           $http.get(path).then(function(response){
 
             for (i in response.data){

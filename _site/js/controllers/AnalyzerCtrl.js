@@ -26,7 +26,7 @@ function AnalyzerCtrl($scope, $http, Analyzer, Data){
 
 
     $scope.detect = function() {
-        var path = $scope.data.host + "/_cluster/state";
+        var path = "http://localhost:9200" + "/_cluster/state";
 
         $http.get(path)
             .success(function(response){
@@ -224,7 +224,7 @@ function AnalyzerCtrl($scope, $http, Analyzer, Data){
 
     $scope.analyzeStandard = function(analyzer) {
 
-        var path = $scope.data.host + "/_analyze?analyzer=" + analyzer;
+        var path = "http://localhost:9200" + "/_analyze?analyzer=" + analyzer;
 
         $http.post(path, $scope.analyzer.query)
             .success(function(response){
@@ -243,7 +243,7 @@ function AnalyzerCtrl($scope, $http, Analyzer, Data){
 
     $scope.analyzeCustom = function(analyzer, index) {
 
-        var path = $scope.data.host + "/" + index + "/_analyze?analyzer=" + analyzer;
+        var path = "http://localhost:9200" + "/" + index + "/_analyze?analyzer=" + analyzer;
 
         $http.post(path, $scope.analyzer.query)
             .success(function(response){
@@ -261,7 +261,7 @@ function AnalyzerCtrl($scope, $http, Analyzer, Data){
 
     $scope.analyzeField = function(field, index) {
 
-        var path = $scope.data.host + "/" + index + "/_analyze?field=" + field;
+        var path = "http://localhost:9200" + "/" + index + "/_analyze?field=" + field;
 
         $http.post(path, $scope.analyzer.query)
             .success(function(response){
